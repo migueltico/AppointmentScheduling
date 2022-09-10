@@ -1,0 +1,82 @@
+.appointmentElement {
+	display: grid;
+	grid-template-rows: auto minmax(60px, auto) auto 30px;
+	align-items: center;
+	background: var(--whiteColor);
+	border-radius: var(--borderRadius);
+	box-shadow: var(--shadowBox);
+	box-sizing: border-box;
+	color: var(--textColor);
+	padding: 18px;
+	gap: 12px;
+	transition: all 250ms ease-in-out;
+}
+.appointmentContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	box-sizing: border-box;
+	gap: 12px;
+}
+@media screen and (max-width: 768px) {
+	.appointmentContainer {
+		padding: 12px;
+	}
+}
+
+
+.appointmentElement h3 {
+	font-size: 1.4rem;
+	color: var(--secondaryColor);
+}
+.appointmentElement h3 {
+	transition: color 250ms ease-in-out;
+}
+.appointmentElement:hover {
+	box-shadow: var(--shadowBoxHover);
+	/* background: var(--lightAccentColor); */
+}
+.appointmentElement:hover > h3 {
+	color: var(--primaryColor);
+}
+.appointment__box:nth-child(2) p {
+	font-size: 1rem;
+	color: var(--textColor);
+}
+.appointment__box:nth-child(2) span{
+	color: var(--primaryColor);
+	font-size: 0.8rem;
+}
+.appointment__box:nth-child(2)  {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	height: 100%;
+	gap: 9px;
+}
+.appointment__box:nth-child(3) {
+	display: grid;
+	grid-template-columns: 3fr auto auto;
+	gap: 12px;
+}
+.appointment__box:nth-child(3) span {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 12px;
+	font-size: 0.8rem;
+	color: var(--primaryColor);
+	cursor: default;
+}
+.appointment__box:nth-child(4)  {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr; 
+	gap: 12px;
+	font-size: 0.8rem;
+	color: var(--primaryColor);
+}
+.appointment__box:nth-child(4) button  {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 6px;
+	font-size: 0.8rem;
+	place-items: center;
+
+}

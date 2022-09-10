@@ -1,0 +1,44 @@
+.loginContainer {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr minmax(200px, 320px) 1fr;
+	grid-template-rows: 1fr;
+	background: var(--primaryColor);
+	place-items: center;
+}
+.form {
+	grid-column: 2/3;
+	place-items: center;
+	width: 100%;
+	
+}
+.form .form__title {
+	font-size: 2rem;
+	color: var(--secondaryColor);
+	margin-bottom: 0.8rem;
+	border-bottom:  1px solid var(--secondaryColor);
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+}
+.form__body {
+	display: grid;
+	padding: 10px 30px;
+	grid-template-rows: auto;
+	grid-template-rows: repeat(autofill, 1fr);
+	grid-gap: 15px;
+	place-items: center;
+	
+	background: var(--lightColor);
+}
+.alert{
+	color: red;
+	font-size: 0.8rem;
+	background-color: rgb(248, 183, 183);
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid red;
+	text-align: center;
+	font-weight: 600;
+}

@@ -1,51 +1,34 @@
-import React,{ useState } from 'react'
-
-import reactLogo from './assets/react.svg'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/login/Login'
 import './App.css'
+import Dashboard from './pages/dashboard/dashboard'
+import ListOfAppointments from './components/ListOfAppointments/ListOfAppointments'
 
-function App() {
-	const [count, setCount] = useState(0)
-
+const Appointment = () => {
 	return (
-		<div className="App">
-			<div>
-				<a
-					href="https://vitejs.dev"
-					target="_blank"
-					rel="noreferrer"
-				>
-					<img
-						src="/vite.svg"
-						className="logo"
-						alt="Vite logo"
-					/>
-				</a>
-				<a
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noreferrer"
-				>
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/login" element={<Login />} />
+				<Route path="/" element={<Dashboard />}>
+					<Route index element={<ListOfAppointments />} />
+				</Route>
+				<Route path="*" element={<h1>404</h1>} />
+			</Routes>
+		</BrowserRouter>
 	)
 }
+export default Appointment
 
-export default App
+/*TODO: Crear una aplicacion de recordatorios de citas 
+	donde se pueda crear, editar, eliminar y ver las citas
+	que se tienen programadas
+	en el dashboard se debe poder ver las citas que se tienen programadas
+	para el dia de hoy y para los proximos 7 dias
+	la aplicacion se debe poder usar como una webapp
+	la aplicacion debe tener un menu para navegar entre las paginas
+	la aplicacion debe tener un login para poder acceder a las paginas
+	la aplicacion debe tener un registro para poder crear una cuenta
+	la cuenta debe permitir registrarse con google o facebook
+	
+*/

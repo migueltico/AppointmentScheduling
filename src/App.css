@@ -1,41 +1,127 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+	--primaryColor: #8a2be2;
+	--secondaryColor: #4a1e9e;
+	--lightPrimaryColor: #9e5cdd;
+	--whiteColor : #fff;
+	--blackColor : #000;
+	--accentColor: #ffe600;
+	--darkAccentColor: #e9d200;
+	--lightAccentColor: #fff59e;
+	--errorColor: #f44336;
+	--warningColor: #ffeb3b;
+	--successColor: #4caf50;
+	--infoColor: #2196f3;
+	--lightColor: #f6f6f6;
+	--darkColor: #370666;
+	--textColor: #3a3a3a;
+	--lightTextColor: #b9b9b9;
+	--darkTextColor: #370666;
+	--lightText: 400;
+	--regularText: 400;
+	--boldText: 700;
+	--borderColor: #cececeb0;
+	--shadowBox: 0 3px 5px 0px rgba(0, 0, 0, 0.2);
+	--shadowBoxHover: 0 3px 6px 1px rgba(0, 0, 0, 0.3);
+	--borderRadius: 5px;
+	--background : #f5f5f5;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+*,
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+html {
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	
+	background: var(--background);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"] {
+	appearance: none;
+	outline: none;
+	border: 1px solid var(--borderColor);
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0;
+	display: inline-block;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+input[type="checkbox"]:checked {
+	background-color: red;
+	border: 1px solid red;
+	color: red;
+}
+.btn {
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: var(--borderRadius);
+	/* cursor: pointer; */
+	width: 100%;
+	transition: all 0.25s ease;
+}
+.btn-default {
+	background-color: var(--primaryColor);
+	color: var(--lightColor);
+}
+.form__group {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary{
+	background-color: var(--primaryColor);
+	color: var(--lightColor);
+}
+.btn-primary:hover{
+	background-color: var(--lightPrimaryColor);
+	color: var(--lightColor);
+}
+.btn-primary:active{
+	background-color: var(--lightPrimaryColor);
+	color: var(--lightColor);
+}
+.btn-primary:focus{
+	background-color: var(--lightPrimaryColor);
+	color: var(--lightColor);
+}
+.btn-primary:disabled{
+	background-color: var(--lightPrimaryColor);
+	color: var(--lightColor);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn-default{
+	background-color: var(--lightColor);
+	color: var(--secondaryColor);
+}
+.btn-default:hover{
+	background-color: var(--primaryColor);
+	color: var(--lightColor);
+	box-shadow: var(--shadowBoxHover);
+}
+.btn-default:active{
+	background-color: var(--primaryColor);
+	color: var(--lightTextColor);
+}
+.btn-default:focus{
+	background-color: var(--lightPrimaryColor);
+	color: var(--lightColor);
+}
+.btn-default:disabled{
+	background-color: var(--lightColor);
+	color: var(--lightColor);
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
