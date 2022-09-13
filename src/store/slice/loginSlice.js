@@ -18,5 +18,7 @@ export const loginSlice = createSlice({
 		}
 	},
 })
+//se eportan las acciones
 export const { setlogin } = loginSlice.actions
+//se export el slice
 export default loginSlice

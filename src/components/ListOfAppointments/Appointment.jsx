@@ -52,4 +52,4 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 	)
 }
 
-export default Appointments
+export default React.memo(Appointments)

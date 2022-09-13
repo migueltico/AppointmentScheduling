@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
-import './login.css'
-import InputGroup from '../../components/commons/InputGroup'
-import useToken from '../../hooks/useToken'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { loginSlice } from '@/store/slice/loginSlice'
 
+import useToken from '@/hooks/useToken'
+import InputGroup from '@/components/commons/InputGroup'
+import './login.css'
+import { useSelector } from 'react-redux'
 document.title = 'Login - Appointment Scheduler'
 
 const Login = () => {
+	const { isLoggedIn } = useSelector((state) => state.login)
 	const navigateTo = useNavigate()
 	const [email, setEmail] = useState({
 		value: '',
@@ -28,15 +31,23 @@ const Login = () => {
 		e.preventDefault()
 		console.log({ isLogged, error, isLoading })
 		if (email.valid && password.valid) {
-			const loginResult = await loginUser({ email: email.value, password: password.value })
+			const loginResult = await loginUser({
+				email: email.value,
+				password: password.value,
+			})
 			console.log(loginResult)
 			if (loginResult) {
 				navigateTo('/')
-			}else{
+			} else {
 				console.log('error')
 			}
 		}
 	}
+	useEffect(() => {
+		if (isLoggedIn) {
+			navigateTo('/')
+		}
+	}, [isLogged, navigateTo])
 
 	return (
 		<div className="loginContainer">

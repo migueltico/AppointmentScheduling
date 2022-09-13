@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import {loginSlice} from './slice/loginSlice'
+import {appointmentSlice} from './slice/appoinmentSlice'
 import {combineReducers} from 'redux' 
 
 import storage from 'redux-persist/lib/storage'
@@ -11,7 +12,8 @@ const persistConfig = {
 	storage
 }
 const reducers = combineReducers({
-	login:  loginSlice.reducer           
+	login:  loginSlice.reducer,
+	appointment: appointmentSlice.reducer
 })
 const persistedReducer = persistReducer(persistConfig, reducers)
 

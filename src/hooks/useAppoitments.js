@@ -1,37 +1,34 @@
-import { useState, useEffect } from 'react'
+import React, {  useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { getAllAppointments } from '../services/appointments'
+import { setAppointments, setError, setLoading } from '../store/slice/appoinmentSlice'
+import { useDispatch } from 'react-redux'
+import { getAllAppointments } from '@/services/appointments'
 
 const UseAppoitments = () => {
+	const dispatch = useDispatch()
 	const { token, dataUser: user } = useSelector((state) => state.login)
-	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState({ hasError: false, message: '' })
-	const [appointments, setAppointments] = useState([])
+	const { appointments, isLoading, error } = useSelector((state) => state.appointment)
 
-	const getAppointments = async () => {
+	// Provoca un segundo renderizado, primero al setear el loading y luego al setear los datos
+	const getAppointments = useCallback(async () => {
 		try {
-			setError({ hasError: false, message: '' })
-			setIsLoading(true)
+			dispatch(setLoading(true))
 			const data = await getAllAppointments(user._id, token)
 			if (data.success) {
-				setIsLoading(false)
-				setError({ hasError: false, message: '' })
-				setAppointments(data.data)
+				dispatch(setAppointments(data.data))
 			} else {
-				setError({
+				dispatch(setError({
 					hasError: true,
 					message: data.message,
-				})
-				setIsLoading(false)
+				}))
 			}
 		} catch (error) {
-			setError({ hasError: true, message: error.message })
-			setIsLoading(false)
+			dispatch(setError({ hasError: true, message: error.message }))
 		}
-	}
-	const deleteAppointment = (id) => {
-		setAppointments(appointments.filter((appointment) => appointment._id !== id))		
-	}
+	})
+	const deleteAppointment = useCallback( (id) => {
+		dispatch(setAppointments(appointments.filter((appointment) => appointment._id !== id)))
+	})
 
 	useEffect(() => {
 		getAppointments()
