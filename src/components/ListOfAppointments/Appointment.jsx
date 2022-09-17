@@ -1,6 +1,8 @@
 import React from 'react'
 
+import Modal from '../commons/modal/Modal'
 const Appointments = ({ appointment, deleteAppointment }) => {
+	const [showDeleteModal, setShowDeleteModal] = React.useState(false)
 	const convertDate = (appointmentDate) => {
 		const newDate = new Date(appointmentDate)
 		const fullDate = newDate.toLocaleDateString('es-ES', {
@@ -10,6 +12,24 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 		})
 		return fullDate.replaceAll(/\//g, '-')
 	}
+	const optionsModal = {
+		position: 'center',
+		title: 'Delete appointment',
+		body: <p>Do you want to delete <strong>{appointment.name}</strong> appointment?</p>,
+		actions: [
+			{
+				text: 'Confirm',
+				className: 'btn fit btn-default',
+				onClick: () => deleteAppointment(appointment._id)
+			},
+			{
+				text: 'Cancel',
+				className: 'btn fit btn-default danger',
+				onClick: () => setShowDeleteModal(false),
+			},
+		],
+	}
+
 	return (
 		<div className="appointmentElement">
 			<h3 className="appointment__box">{appointment.name}</h3>
@@ -42,12 +62,19 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 				</button>
 				<button
 					className="btn btn-default"
-					onClick={() => deleteAppointment(appointment._id)}
+					onClick={() => setShowDeleteModal(true)}
 				>
 					<i className="fa fa-trash"></i>
 					<span>Delete</span>
 				</button>
 			</div>
+
+			{showDeleteModal && (
+				<Modal
+					setShowModal={setShowDeleteModal}
+					options={optionsModal}
+				/>
+			)}
 		</div>
 	)
 }

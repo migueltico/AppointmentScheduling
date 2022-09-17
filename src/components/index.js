@@ -1,0 +1,6 @@
+export  {Appointment} from './ListOfAppointments/Appointment'
+export {ListOfAppointments} from './ListOfAppointments/ListOfAppointments'
+export {InputGroup} from './commons/InputGroup'
+export {Content} from './dashboard/Content'
+export {Header} from './dashboard/Header'
+export {Menu} from './dashboard/Menu'

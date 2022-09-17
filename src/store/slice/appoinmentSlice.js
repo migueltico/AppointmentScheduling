@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const appointmentSlice = createSlice({
 	name: 'appointment',
 	initialState: {
-		appointments: [],
+		appointments: {},
 		isLoading: false,
 		error: {
 			hasError: false,

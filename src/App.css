@@ -1,17 +1,22 @@
 :root {
-	--primaryColor: #8a2be2;
-	--secondaryColor: #4a1e9e;
-	--lightPrimaryColor: #9e5cdd;
+	--primaryColor: #008cff;
+	--secondaryColor: #0167bb;
+	--lightPrimaryColor: #5db6ff;
 	--whiteColor : #fff;
 	--blackColor : #000;
 	--accentColor: #ffe600;
 	--darkAccentColor: #e9d200;
 	--lightAccentColor: #fff59e;
-	--errorColor: #f44336;
-	--warningColor: #ffeb3b;
-	--successColor: #4caf50;
-	--infoColor: #2196f3;
+	--errorColor: #fd655a;
+	--errorLightColor: #fcaba5;
+	--warningColor: #fdef6c;
+	--warningLightColor: #faf192;
+	--successColor: #63c466;
+	--successLightColor: #a3e4a6;
+	--infoColor: #51acf7;
+	--infoLightColor: #5bb0f7;
 	--lightColor: #f6f6f6;
+	--lightDarkColor: #ececec;
 	--darkColor: #370666;
 	--textColor: #3a3a3a;
 	--lightTextColor: #b9b9b9;
@@ -24,6 +29,7 @@
 	--shadowBoxHover: 0 3px 6px 1px rgba(0, 0, 0, 0.3);
 	--borderRadius: 5px;
 	--background : #f5f5f5;
+	/* --background : #252427; */
 }
 
 *,
@@ -62,14 +68,33 @@ input[type="checkbox"]:checked {
 	border: 1px solid red;
 	color: red;
 }
+
 .btn {
-	padding: 14px 20px;
+	padding: 12px 14px;
 	margin: 8px 0;
 	border: none;
 	border-radius: var(--borderRadius);
-	/* cursor: pointer; */
+	cursor: pointer;
 	width: 100%;
+	font-size: 1rem;
 	transition: all 0.25s ease;
+	position: relative;
+
+}
+.btn svg, .btn i {
+	grid-column: span 1;
+}
+.btn span {
+	grid-column: 2/3;
+}
+.btn:has(svg), .btn:has(i) {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	column-gap: 8px;
+}
+
+.btn.fit{
+	max-width: fit-content;
 }
 .btn-default {
 	background-color: var(--primaryColor);
@@ -81,31 +106,10 @@ input[type="checkbox"]:checked {
 	flex-direction: column;
 	position: relative;
 }
-
-.btn-primary{
-	background-color: var(--primaryColor);
-	color: var(--lightColor);
-}
-.btn-primary:hover{
-	background-color: var(--lightPrimaryColor);
-	color: var(--lightColor);
-}
-.btn-primary:active{
-	background-color: var(--lightPrimaryColor);
-	color: var(--lightColor);
-}
-.btn-primary:focus{
-	background-color: var(--lightPrimaryColor);
-	color: var(--lightColor);
-}
-.btn-primary:disabled{
-	background-color: var(--lightPrimaryColor);
-	color: var(--lightColor);
-}
-
 .btn-default{
 	background-color: var(--lightColor);
 	color: var(--secondaryColor);
+	border: 1px solid var(--borderColor);
 }
 .btn-default:hover{
 	background-color: var(--primaryColor);
@@ -123,5 +127,72 @@ input[type="checkbox"]:checked {
 .btn-default:disabled{
 	background-color: var(--lightColor);
 	color: var(--lightColor);
+}
+
+.btn.danger{
+	border:1px solid var(--errorColor);
+	color: var(--errorColor);
+}
+.btn.danger:hover{
+	background-color: var(--errorColor);
+	color: var(--lightColor);
+	box-shadow: var(--shadowBoxHover);
+}
+.btn.danger:active{
+	background-color: var(--errorColor);
+	color: var(--lightTextColor);
+}
+.btn.danger:focus{
+	background-color: var(--errorLightColor);
+	color: var(--lightColor);
+}
+.btn.danger:disabled{
+	background-color: var(--lightColor);
+	color: var(--lightTextColor);
+}
+
+.btn.warning{
+	border:1px solid var(--warningColor);
+	color: var(--warningColor);
+}
+.btn.warning:hover{
+	background-color: var(--warningColor);
+	color: var(--lightColor);
+	box-shadow: var(--shadowBoxHover);
+}
+.btn.warning:active{
+	background-color: var(--warningColor);
+	color: var(--lightTextColor);
+}
+
+.btn.warning:focus{
+	background-color: var(--warningLightColor);
+	color: var(--lightColor);
+}
+.btn.warning:disabled{
+	background-color: var(--lightColor);
+	color: var(--lightTextColor);
+}
+
+.btn.success{
+	border:1px solid var(--successColor);
+	color: var(--successColor);
+}
+.btn.success:hover{
+	background-color: var(--successColor);
+	color: var(--lightColor);
+	box-shadow: var(--shadowBoxHover);
+}
+.btn.success:active{
+	background-color: var(--successColor);
+	color: var(--lightTextColor);
+}
+.btn.success:focus{
+	background-color: var(--successLightColor);
+	color: var(--lightColor);
+}
+.btn.success:disabled{
+	background-color: var(--lightColor);
+	color: var(--lightTextColor);
 }
 
