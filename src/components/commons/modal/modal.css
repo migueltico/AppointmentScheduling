@@ -2,8 +2,8 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 1040;	
-	display: grid;
+	z-index: 1000;	
+	display: flex;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.337);
@@ -18,6 +18,7 @@
 	border-radius: var(--borderRadius);
 	position: relative;
 	gap: 16px;
+	margin: 12px;
 }
 .modal__backdrop.left {	
 	justify-content: start;
@@ -44,7 +45,7 @@
 	display: grid;
 	align-items: center;
 	border-bottom: 1px solid var(--secondaryColor);
-	padding: 12px;
+	padding: 12px 0;
 }
 .modal__close {
 	position: absolute;
@@ -88,20 +89,58 @@
 /* 
 media queries brake points
  */
- @media screen and (min-width: 480px) {
-	.modal {
-		width: 100%;
+ @media screen and (min-width: 280px) {
+	.modal.lg {
+		justify-content: normal;
+		width: 97%;
 	}
+	.modal.md {
+		width:98%;
+	}
+	.modal.sm {
+		width:98%;
+	}
+
+}
+ @media screen and (min-width: 600px) {
+	.modal.lg {
+		width:98%;
+	}
+	.modal.md {
+		width: 768px;
+	}
+	.modal.sm {
+		width: 480px;
+	}
+
 }
 
 @media screen and (min-width: 768px) {
 	.modal {
 		width: 660px;
 	}
+	.modal.lg {
+		width:98%;
+	}
+	.modal.md {
+		width: 768px;
+	}
+	.modal.sm {
+		width: 480px;
+	}
 }
 @media screen and (min-width: 1200px) {
 	.modal {
 		width: 960px;
+	}
+	.modal.lg {
+		width: 960px;
+	}
+	.modal.md {
+		width: 768px;
+	}
+	.modal.sm {
+		width: 480px;
 	}
 }
 @media screen and (min-width: 1400px) {
@@ -109,12 +148,12 @@ media queries brake points
 		width: 1200px;
 	}
 	.modal.lg {
-		width: 1400px;
+		width: 1200px;
 	}
 	.modal.md {
 		width: 768px;
 	}
 	.modal.sm {
-		width: 548px;
+		width: 480px;
 	}
 }

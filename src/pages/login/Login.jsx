@@ -51,7 +51,7 @@ const Login = () => {
 
 	return (
 		<div className="loginContainer">
-			<div className="form">
+			<div className="form__login">
 				<div className="form__body">
 					<h1 className="form__title">Login</h1>
 					<InputGroup

@@ -2,9 +2,9 @@ import React from 'react'
 import UseAppoitments from '@/hooks/useAppoitments'
 import './appointmentList.css'
 import Appointment from './Appointment'
-
+document.title = 'Appointment List - Appointment Scheduler'
 const ListOfAppointments = () => {
-	const { appointments, isLoading, deleteAppointment } = UseAppoitments()
+	const { appointments, isLoading, deleteAppointment, editAppointment } = UseAppoitments()
 	return (
 		<>
 			<div className="appointmentContainer">
@@ -16,6 +16,7 @@ const ListOfAppointments = () => {
 							appointment={data}
 							key={index}
 							deleteAppointment={deleteAppointment}
+							editAppointment={editAppointment}
 						/>
 					))
 				)}

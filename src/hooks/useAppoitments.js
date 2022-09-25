@@ -1,4 +1,4 @@
-import React, {  useEffect, useCallback } from 'react'
+import {  useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { setAppointments, setError, setLoading } from '../store/slice/appoinmentSlice'
 import { useDispatch } from 'react-redux'
@@ -30,15 +30,55 @@ const UseAppoitments = () => {
 		dispatch(setAppointments(appointments.filter((appointment) => appointment._id !== id)))
 	})
 
+	const createAppointment = useCallback(async(appointment) => {
+		try {
+			const response = await fetch(
+				'http://localhost:3000/api/project1/appointment',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(appointment),
+				}
+			)
+			const data = await response.json()
+			console.log(data)
+		} catch (error) {
+			console.log(error)
+		}
+	})
+	const editAppointment = useCallback(async(appointment) => {
+		try {
+			const response = await fetch(
+				'http://localhost:3000/api/project1/appointment',
+				{
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(appointment),
+				}
+			)
+			const data = await response.json()
+			console.log(data)
+		} catch (error) {
+			console.log(error)
+		}
+	})
+
+
 	useEffect(() => {
 		getAppointments()
 	}, [user.id, token])
 
 	return {
-		isLoading,
-		error,
 		appointments,
+		createAppointment,
 		deleteAppointment,
+		editAppointment,
+		error,
+		isLoading,
 	}
 }
 

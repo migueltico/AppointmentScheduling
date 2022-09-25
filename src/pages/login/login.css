@@ -7,13 +7,13 @@
 	background: var(--primaryColor);
 	place-items: center;
 }
-.form {
+.form__login {
 	grid-column: 2/3;
 	place-items: center;
 	width: 100%;
 	
 }
-.form .form__title {
+.form__login .form__title {
 	font-size: 2rem;
 	color: var(--secondaryColor);
 	margin-bottom: 0.8rem;

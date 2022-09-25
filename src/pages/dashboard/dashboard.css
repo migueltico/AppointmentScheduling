@@ -1,29 +1,30 @@
 main {
 	display: grid;
-	margin-top: 12px;
-	width: 100vw;
 	grid-template-columns: 1fr;
 	justify-items: center;
+	height: 100%;
+	min-height: 100vh;
 }
 #content {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 75px 1fr;
-	gap: 12px;
+	grid-template-rows: minmax(75px, 90px) 1fr;
+	padding: 12px;
 }
-
 
 #header nav {
 	background: var(--whiteColor);
-	height: 100%;
 	box-shadow: var(--shadowBox);
 	border-radius: var(--borderRadius);
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 6px 12px;
-	gap: 12px;
+	padding: 12px;
+	gap: 24px;
+}
+#header nav input.nav__item {
+	margin: 0px;
 }
 .nav__item {
 	display: block;
@@ -33,9 +34,8 @@ main {
 	background-color: transparent;
 	color: var(--secondaryColor);
 	font-size: 1.4rem;
-	padding: 0 12px;
 }
-.nav__item:hover {
+.nav__item:not(input):hover {
 	color: var(--primaryColor);
 }
 .nav__item.profile__btn figure {
@@ -51,24 +51,30 @@ main {
 /* 
 media queries brake points
  */
- @media screen and (min-width: 480px) {
+
+
+@media screen and (min-width: 280px) {
 	#content {
 		width: 100%;
 	}
+
 }
 
 @media screen and (min-width: 768px) {
 	#content {
-		width: 660px;
+		width: 768px;
 	}
+
 }
 @media screen and (min-width: 1200px) {
 	#content {
 		width: 960px;
 	}
+
 }
 @media screen and (min-width: 1400px) {
 	#content {
 		width: 1200px;
 	}
+
 }

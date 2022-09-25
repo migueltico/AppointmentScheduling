@@ -1,34 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import UseDateTime from '@/hooks/useDateTime'
 
 import Modal from '../commons/modal/Modal'
-const Appointments = ({ appointment, deleteAppointment }) => {
-	const [showDeleteModal, setShowDeleteModal] = React.useState(false)
-	const convertDate = (appointmentDate) => {
-		const newDate = new Date(appointmentDate)
-		const fullDate = newDate.toLocaleDateString('es-ES', {
-			year: '2-digit',
-			month: 'short',
-			day: '2-digit',
-		})
-		return fullDate.replaceAll(/\//g, '-')
-	}
-	const optionsModal = {
-		position: 'center',
-		title: 'Delete appointment',
-		body: <p>Do you want to delete <strong>{appointment.name}</strong> appointment?</p>,
-		actions: [
-			{
-				text: 'Confirm',
-				className: 'btn fit btn-default',
-				onClick: () => deleteAppointment(appointment._id)
-			},
-			{
-				text: 'Cancel',
-				className: 'btn fit btn-default danger',
-				onClick: () => setShowDeleteModal(false),
-			},
-		],
-	}
+import DeleteAppointment from '../commons/modal/DeleteAppointment'
+import EditAppointment from '../commons/modal/EditAppointment'
+
+const Appointments = ({ appointment, deleteAppointment, editAppointment }) => {
+	const [showDeleteModal, setShowDeleteModal] = useState(false)
+	const [showEditModal, setShowEditModal] = useState(false)
+	const user = appointment.userId._id
+	const [editedAppointment, setEditedAppointment] = useState({
+		...appointment,
+		userId: user,
+	})
+
+
+	const { convertDate, convertTime } = UseDateTime()
 
 	return (
 		<div className="appointmentElement">
@@ -48,7 +35,7 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 				</span>
 				<span>
 					<i className="fa fa-clock"></i>
-					{appointment.time}
+					{convertTime(appointment.time)}
 				</span>
 			</div>
 			<div className="appointment__box">
@@ -56,7 +43,10 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 					<i className="fa fa-check"></i>
 					<span>Done</span>
 				</button>
-				<button className="btn btn-default">
+				<button
+					className="btn btn-default"
+					onClick={() => setShowEditModal(true)}
+				>
 					<i className="fa fa-edit"></i>
 					<span>Edit</span>
 				</button>
@@ -72,8 +62,36 @@ const Appointments = ({ appointment, deleteAppointment }) => {
 			{showDeleteModal && (
 				<Modal
 					setShowModal={setShowDeleteModal}
-					options={optionsModal}
-				/>
+					options={{
+						title: 'Confirm Delete',
+						position: 'center',
+						size: 'sm',
+					}}
+				>
+					<DeleteAppointment
+						appointment={appointment}
+						deleteAppointment={deleteAppointment}
+						setShowDeleteModal={setShowDeleteModal}
+					/>
+				</Modal>
+			)}
+
+			{showEditModal && (
+				<Modal
+					setShowModal={setShowEditModal}
+					options={{
+						title: 'Edit appointment',
+						position: 'center',
+						size: 'sm',
+					}}
+				>
+					<EditAppointment
+						setShowEditModal={setShowEditModal}
+						editAppointment={editAppointment}
+						editedAppointment = {editedAppointment}
+						setAppointment={setEditedAppointment}
+					/>
+				</Modal>
 			)}
 		</div>
 	)

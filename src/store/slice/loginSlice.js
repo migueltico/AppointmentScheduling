@@ -5,6 +5,7 @@ export const loginSlice = createSlice({
 		dataUser: {},
 		token: '',
 		isLoggedIn: false,
+		darkMode: false,
 	},
 	reducers: {
 		setlogin: (state, action) => {
@@ -15,10 +16,13 @@ export const loginSlice = createSlice({
 		logout: (state) => {
 			state.dataUser = {}
 			state.isLoggedIn = false
-		}
+		},
+		setDarkMode: (state, action) => {
+			state.darkMode = action.payload
+		},
 	},
 })
 //se eportan las acciones
-export const { setlogin } = loginSlice.actions
+export const { setlogin, logout, setDarkMode } = loginSlice.actions
 //se export el slice
 export default loginSlice
